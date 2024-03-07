@@ -79,20 +79,6 @@ public class ShiroAuthenticationService implements AuthenticationService {
         Collection<Realm> realms =
             ((DefaultSecurityManager) org.apache.shiro.SecurityUtils.getSecurityManager())
                 .getRealms();
-        if (realms.size() > 1) {
-          boolean isIniRealmEnabled = false;
-          for (Realm realm : realms) {
-            if (realm instanceof IniRealm && ((IniRealm) realm).getIni().get("users") != null) {
-              isIniRealmEnabled = true;
-              break;
-            }
-          }
-          if (isIniRealmEnabled) {
-            throw new Exception(
-                "IniRealm/password based auth mechanisms should be exclusive. "
-                    + "Consider removing [users] block from shiro.ini");
-          }
-        }
       } catch (UnavailableSecurityManagerException e) {
         LOGGER.error("Failed to initialise shiro configuration", e);
       }
