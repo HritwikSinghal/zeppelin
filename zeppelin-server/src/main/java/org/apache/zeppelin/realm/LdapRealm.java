@@ -287,13 +287,13 @@ public class LdapRealm extends DefaultLdapRealm {
     if (!isAuthorizationEnabled()) {
       return null;
     }
-    try {
-        LdapContext systemLdapCtx = ldapContextFactory.getSystemLdapContext();
-    }
-    catch (Throwable throwable) {
-        LOGGER.error("GUERY ERRORRRRRRRR");
-        LOGGER.error(throwable.toString());
-    }
+//    try {
+//        LdapContext systemLdapCtx = ldapContextFactory.getSystemLdapContext();
+//    }
+//    catch (Throwable throwable) {
+//        LOGGER.error("GUERY ERRORRRRRRRR");
+//        LOGGER.error(throwable.toString());
+//    }
     final Set<String> roleNames = getRoles(principals, ldapContextFactory);
     LOGGER.debug("RolesNames Authorization: {}", roleNames);
     SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo(roleNames);
@@ -324,9 +324,9 @@ public class LdapRealm extends DefaultLdapRealm {
 
     LdapContext systemLdapCtx = null;
     try {
-      LOGGER.error("TESTTTTT");
+//      LOGGER.error("TESTTTTT");
       systemLdapCtx = ldapContextFactory.getSystemLdapContext();
-      LOGGER.error("ENDDDDDDD");
+//      LOGGER.error("ENDDDDDDD");
       return rolesFor(principals, username, systemLdapCtx,
         ldapContextFactory, SecurityUtils.getSubject().getSession());
     } catch (Throwable t) {
