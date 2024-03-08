@@ -317,7 +317,9 @@ public class LdapRealm extends DefaultLdapRealm {
 
     LdapContext systemLdapCtx = null;
     try {
+      LOGGER.error("TESTTTTT");
       systemLdapCtx = ldapContextFactory.getSystemLdapContext();
+      LOGGER.error("ENDDDDDDD");
       return rolesFor(principals, username, systemLdapCtx,
         ldapContextFactory, SecurityUtils.getSubject().getSession());
     } catch (Throwable t) {

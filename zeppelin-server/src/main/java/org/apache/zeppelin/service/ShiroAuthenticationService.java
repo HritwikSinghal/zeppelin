@@ -218,11 +218,11 @@ public class ShiroAuthenticationService implements AuthenticationService {
           break;
         } else if (LDAP_REALM.equals(name)) {
           try {
-            AuthorizationInfo auth =
-                ((LdapRealm) realm)
-                    .queryForAuthorizationInfo(
+            LOGGER.error("HELLPPPPPPP");
+            AuthorizationInfo auth = ((LdapRealm) realm).queryForAuthorizationInfo(
                         new SimplePrincipalCollection(subject.getPrincipal(), realm.getName()),
                         ((LdapRealm) realm).getContextFactory());
+            LOGGER.error("HELP ENDDDDDD");
             if (auth != null) {
               roles = new HashSet<>(auth.getRoles());
             }
