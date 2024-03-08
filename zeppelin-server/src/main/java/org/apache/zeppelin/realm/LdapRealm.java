@@ -287,6 +287,13 @@ public class LdapRealm extends DefaultLdapRealm {
     if (!isAuthorizationEnabled()) {
       return null;
     }
+    try {
+        LdapContext systemLdapCtx = ldapContextFactory.getSystemLdapContext();
+    }
+    catch (Throwable throwable) {
+        LOGGER.error("GUERY ERRORRRRRRRR");
+        LOGGER.error(throwable.toString());
+    }
     final Set<String> roleNames = getRoles(principals, ldapContextFactory);
     LOGGER.debug("RolesNames Authorization: {}", roleNames);
     SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo(roleNames);
@@ -323,6 +330,7 @@ public class LdapRealm extends DefaultLdapRealm {
       return rolesFor(principals, username, systemLdapCtx,
         ldapContextFactory, SecurityUtils.getSubject().getSession());
     } catch (Throwable t) {
+      LOGGER.error(t.toString());
       LOGGER.warn("Failed to get roles in current context for " + username, t);
       return Collections.emptySet();
     } finally {
