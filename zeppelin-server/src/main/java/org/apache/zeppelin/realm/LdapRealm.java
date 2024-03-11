@@ -210,7 +210,6 @@ public class LdapRealm extends DefaultLdapRealm {
       return super.doGetAuthenticationInfo(token);
     } catch (org.apache.shiro.authc.AuthenticationException e){
       LOGGER.warn("Encountered Error while authenticating {}: {}", token.getPrincipal(), e.getMessage());
-      LOGGER.error("" + e);
       throw  e;
     }
   }
